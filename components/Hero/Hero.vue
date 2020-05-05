@@ -128,31 +128,8 @@
     }
   }
 
-  .project-preview-text {
-    @apply opacity-0 transform translate-y-6 flex flex-col justify-end h-full relative z-10 px-20 pb-24 text-white;
-  }
-
-  .project-preview {
-    @apply bg-gray-500 h-screen w-full block relative z-10;
-    clip-path: url(#project-preview-clip);
-  }
-
-  .project-preview-content {
-    @apply absolute z-10 w-full h-full;
-    background: rgba(0, 0, 0, 0.3);
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 40%)
-  }
-
-  .project-preview-reveal {
-    @apply absolute bottom-0 left-0 h-full w-full z-20;
-    background-image: linear-gradient(to right, #fff 0%, #fff 40%, transparent 100%);
-    transform: translateX(0%);
-    width: 245%;
-  }
-
   .view-projects {
     @apply ml-auto;
-
   }
 
   .view-projects-btn {
