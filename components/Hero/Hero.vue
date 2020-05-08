@@ -46,34 +46,62 @@
         timeline.to(document.querySelectorAll('.hero-title div'), {
           y: 0,
           opacity: 1,
-          delay: 1,
           duration: 1.2,
         });
         timeline.to('.hero-tagline', {
           y: 0,
           opacity: 1,
-          duration: 0.8,
+          duration: 0.6,
         }, '-=0.3');
+        timeline.to('.circle-1', {
+          scaleX: 1,
+          scaleY: 1,
+          opacity: 1,
+          ease: 'power3.out',
+          duration: 0.6,
+        });
+        timeline.to('.circle-2', {
+          transform: 'translateY(-50%) scale(1)',
+          opacity: 1,
+          ease: 'power3.out',
+          duration: 0.6,
+        }, '-=0.4');
+        timeline.to('.circle-3', {
+          scaleX: 1,
+          scaleY: 1,
+          opacity: 1,
+          ease: 'power3.out',
+          duration: 0.6,
+        }, '-=0.4');
         timeline.to('.view-projects-btn', {
           x: 0,
           ease: 'power3.out',
-          duration: 1,
+          duration: 0.5,
         });
         timeline.to('.view-projects-btn', {
           opacity: 1,
           ease: 'power3.in',
-          duration: 2,
-        }, '-=1.5');
+          duration: 1.5,
+        }, '-=1.0');
         timeline.to('.view-projects-btn', {
           lineHeight: '21vh',
           ease: 'power3.out',
-          duration: 2,
+          duration: 1.5,
         }, '-=0.5');
       },
     },
     mounted() {
-      window.addEventListener('load', () => {
-        this.heroTimeline();
+      this.heroTimeline();
+
+      const windowHeight = window.innerHeight;
+      window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY;
+        if (windowHeight > scrollPos) {
+          document.querySelector('.circle-1').style.transform = `translate(0, -${ scrollPos / 10 }px)`;
+          document.querySelector('.circle-2').style.transform = `translate(0, calc(-50% - ${ scrollPos / 5 }px))`;
+          document.querySelector('.circle-3').style.transform = `translate(0, -${ scrollPos / 3 }px)`;
+          document.querySelector('.view-projects-btn').style.transform = `translate(0, ${ scrollPos / 15 }px)`;
+        }
       });
     },
   };
@@ -91,7 +119,7 @@
       background-color: #d9f3ee;
       left: -20vw;
       bottom: -27vh;
-      @apply absolute rounded-full z-20;
+      @apply absolute rounded-full z-20 hidden;
     }
   }
 
@@ -146,10 +174,11 @@
   }
 
   .circle {
-    @apply absolute top-0 rounded-full;
+    @apply absolute top-0 rounded-full opacity-0;
     width: 33vw;
     height: 33vw;
     right: 5vw;
+    transform: scale(0.8);
 
     &-1 {
       top: -15vh;
@@ -158,7 +187,7 @@
     &-2 {
       top: 50%;
       right: -10vw;
-      transform: translateY(-50%);
+      transform: translateY(-50%) scale(0.8);
     }
 
     &-3 {
