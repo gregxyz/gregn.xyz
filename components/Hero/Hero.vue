@@ -82,6 +82,7 @@
         });
         timeline.set('.view-projects-btn', {
           zIndex: 60,
+          pointerEvents: 'auto',
         });
       },
       viewProjectsEnter() {
@@ -173,7 +174,7 @@
   }
 
   .view-projects-btn {
-    @apply absolute right-0 text-primary font-para tracking-widest;
+    @apply absolute right-0 text-primary font-para tracking-widest pointer-events-none;
     bottom: 10vh;
     transform: translateX(-15vw);
     font-size: 4vw;
