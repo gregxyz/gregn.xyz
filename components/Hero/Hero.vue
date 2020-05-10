@@ -9,100 +9,103 @@
           A <span class="text-underline">Front End Developer</span> based in Manchester. I'm passionate about <span class="text-underline">REST API's</span>, <span class="text-underline">Graph QL</span>, <span class="text-underline">Headless CMS'</span> & the latest in <span class="text-underline">Javascript</span> while maintaining a strong emphasis on performance, SEO and accessibility.
         </p>
       </div>
-      <div class="view-projects">
-        <div class="circle circle-1 bg-pink" />
-        <div class="circle circle-2 bg-cream z-10" />
-        <div class="circle circle-3 bg-sky z-20" />
-        <button class="view-projects-btn z-30">
-          view proje-cts
-        </button>
-      </div>
     </div>
+    <button
+      @mouseenter="viewProjectsEnter"
+      @mouseleave="viewProjectsLeave"
+      class="view-projects-btn"
+    >
+      <div>v</div><div>i</div><div>e</div><div>w</div> <div>p</div><div>r</div><div>o</div><div>j</div><div>e</div><div>c</div><div>t</div><div>s</div>
+    </button>
+    <div class="reveal reveal-1 bg-sky" />
+    <div class="reveal reveal-2 bg-cream" />
+    <div class="reveal reveal-3 bg-pink" />
   </section>
 </template>
 
 <script>
-  import { gsap, TextPlugin } from 'gsap/all';
-
-  gsap.registerPlugin(TextPlugin);
+  import { gsap } from 'gsap/all';
 
   export default {
     data: () => ({
-      skills: [
-        'Vue JS',
-        'Nuxt',
-        'Vuex',
-        'Javascript',
-        'Graph QL',
-        'Storyblok',
-        'WordPress',
-        'Developer',
-      ],
-      skillsIndex: 0,
     }),
     methods: {
       heroTimeline() {
         const timeline = gsap.timeline();
-        timeline.to(document.querySelectorAll('.hero-title div'), {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
+        timeline.to('.reveal-1', {
+          width: '100%',
+          duration: 0.8,
+          ease: 'power3.out',
         });
+        timeline.to('.reveal-2', {
+          width: '100%',
+          duration: 0.8,
+          ease: 'power3.out',
+        }, '-=0.4');
+        timeline.to('.reveal-3', {
+          width: '100%',
+          duration: 0.8,
+          ease: 'power3.out',
+        }, '-=0.4');
+        timeline.set(document.querySelectorAll('.reveal'), {
+          left: 'auto',
+        });
+        timeline.to('.reveal-1', {
+          width: '50vw',
+          duration: 0.8,
+          ease: 'power3.out',
+        });
+        timeline.to('.reveal-2', {
+          width: '35vw',
+          duration: 0.8,
+          ease: 'power3.out',
+        }, '-=0.4');
+        timeline.to('.reveal-3', {
+          width: '10vw',
+          duration: 0.8,
+          ease: 'power3.out',
+        }, '-=0.4');
+        timeline.to(document.querySelectorAll('.hero-title div'), {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+        }, '-=1');
         timeline.to('.hero-tagline', {
           y: 0,
           opacity: 1,
           duration: 0.6,
         }, '-=0.3');
-        timeline.to('.circle-1', {
-          scaleX: 1,
-          scaleY: 1,
-          opacity: 1,
-          ease: 'power3.out',
-          duration: 0.6,
-        });
-        timeline.to('.circle-2', {
-          transform: 'translateY(-50%) scale(1)',
-          opacity: 1,
-          ease: 'power3.out',
-          duration: 0.6,
-        }, '-=0.4');
-        timeline.to('.circle-3', {
-          scaleX: 1,
-          scaleY: 1,
-          opacity: 1,
-          ease: 'power3.out',
-          duration: 0.6,
-        }, '-=0.4');
-        timeline.to('.view-projects-btn', {
+        timeline.to(document.querySelectorAll('.view-projects-btn div'), {
           x: 0,
-          ease: 'power3.out',
-          duration: 0.5,
-        });
-        timeline.to('.view-projects-btn', {
           opacity: 1,
-          ease: 'power3.in',
-          duration: 1.5,
-        }, '-=1.0');
-        timeline.to('.view-projects-btn', {
-          lineHeight: '21vh',
-          ease: 'power3.out',
-          duration: 1.5,
-        }, '-=0.5');
+          duration: 0.8,
+        });
+        timeline.set('.view-projects-btn', {
+          zIndex: 60,
+        });
+      },
+      viewProjectsEnter() {
+        const timeline = gsap.timeline();
+        timeline.set('.reveal-3', {
+          width: '10vw',
+        });
+        timeline.to('.reveal-3', {
+          width: '26vw',
+          duration: 0.4,
+          ease: 'slow(0.3, 0.7, false)',
+        });
+      },
+      viewProjectsLeave() {
+        const timeline = gsap.timeline();
+        timeline.to('.reveal-3', {
+          width: '10vw',
+          duration: 0.4,
+          ease: 'slow(0.3, 0.7, false)',
+        });
       },
     },
     mounted() {
       this.heroTimeline();
-
-      const windowHeight = window.innerHeight;
-      window.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY;
-        if (windowHeight > scrollPos) {
-          document.querySelector('.circle-1').style.transform = `translate(0, -${ scrollPos / 10 }px)`;
-          document.querySelector('.circle-2').style.transform = `translate(0, calc(-50% - ${ scrollPos / 5 }px))`;
-          document.querySelector('.circle-3').style.transform = `translate(0, -${ scrollPos / 3 }px)`;
-          document.querySelector('.view-projects-btn').style.transform = `translate(0, ${ scrollPos / 15 }px)`;
-        }
-      });
     },
   };
 </script>
@@ -131,7 +134,7 @@
 
       @for $i from 1 through 13 {
         &:nth-child(#{$i}) {
-          transform: translateY(#{$i * 3}px);
+          transform: translateX(#{$i * 1.5}vw);
         }
       }
     }
@@ -155,45 +158,38 @@
       @apply absolute bg-secondary -z-1;
     }
   }
-
-  .view-projects {
-    @apply ml-auto;
-  }
-
-  .view-projects-btn {
-    @apply relative font-body text-primary tracking-widest text-left;
-    font-size: 8vw;
-    line-height: 12vh;
-    max-width: 25vw;
-    transform: translateX(5vw);
-    opacity: 0;
-
-    &:focus {
-      @apply outline-none;
-    }
-  }
-
-  .circle {
-    @apply absolute top-0 rounded-full opacity-0;
-    width: 33vw;
-    height: 33vw;
-    right: 5vw;
-    transform: scale(0.8);
-
-    &-1 {
-      top: -15vh;
-    }
+  
+  .reveal {
+    @apply absolute top-0 right-0 left-0 w-0 z-50;
+    height: 33.33%;
 
     &-2 {
-      top: 50%;
-      right: -10vw;
-      transform: translateY(-50%) scale(0.8);
+      top: 33.33%;
     }
 
     &-3 {
-      top: auto;
-      bottom: -15vh;
+      @apply top-auto bottom-0;
     }
   }
-  
+
+  .view-projects-btn {
+    @apply absolute right-0 text-primary font-para tracking-widest;
+    bottom: 10vh;
+    transform: translateX(-15vw);
+    font-size: 4vw;
+
+    &:focus {
+      outline: none;
+    }
+
+    div {
+      @apply inline-block opacity-0;
+
+      @for $i from 1 through 12 {
+        &:nth-child(#{$i}) {
+          transform: translateX(#{$i * 5}vw);
+        }
+      }
+    }
+  }
 </style>
