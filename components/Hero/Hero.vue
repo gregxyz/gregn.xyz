@@ -13,6 +13,7 @@
     <button
       @mouseenter="viewProjectsEnter"
       @mouseleave="viewProjectsLeave"
+      @click="goToProjects"
       class="view-projects-btn"
     >
       <div>v</div><div>i</div><div>e</div><div>w</div> <div>p</div><div>r</div><div>o</div><div>j</div><div>e</div><div>c</div><div>t</div><div>s</div>
@@ -100,8 +101,26 @@
         const timeline = gsap.timeline();
         timeline.to('.reveal-3', {
           width: '10vw',
+          height: '33.33%',
           duration: 0.4,
           ease: 'slow(0.3, 0.7, false)',
+        });
+      },
+      goToProjects() {
+        const timeline = gsap.timeline({
+          onComplete: () => {
+            document.querySelector('.projects').scrollIntoView({
+              behavior: 'smooth',
+            });
+          },
+        });
+        timeline.to('.reveal-3', {
+          width: '100vw',
+          duration: 0.5,
+        });
+        timeline.to('.reveal-3', {
+          height: '100vw',
+          duration: 0.5,
         });
       },
     },
