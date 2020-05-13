@@ -37,18 +37,34 @@
     @apply relative overflow-hidden;
 
     img {
-      height: 500px;
+      height: 250px;
+
+      @screen lg {
+        height: 500px;
+      }
+    }
+
+    &:not(:last-child) {
+      @apply mb-10;
+
+      @screen lg {
+        @apply mb-0;
+      }
     }
   }
 
   .project-content {
-    @apply pt-8 px-10;
+    @apply pt-6 px-4;
+
+    @screen lg {
+      @apply pt-8 px-10
+    }
 
     ul {
-      @apply flex;
+      @apply flex flex-wrap;
 
       li {
-        @apply text-lilac;
+        @apply text-lilac leading-relaxed;
 
         &:not(:last-child):after {
           content: '';

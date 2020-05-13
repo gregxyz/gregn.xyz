@@ -24,14 +24,14 @@
             timeline.to(entry.target.querySelector('.project-reveal'), {
               height: 0,
               ease: 'power3.out',
-              duration: 1.5,
+              duration: 1,
             });
             observer.unobserve(entry.target);
           }
         });
       }, {
         root: null,
-        rootMargin: '-15% 0px',
+        rootMargin: '-10% 0px',
         threshold: 0,
       });
 

@@ -1,8 +1,8 @@
 <template>
   <section class="hero">
-    <div class="flex items-center px-20">
-      <div class="w-3/5 flex-shrink-0 relative z-20">
-        <h1 class="hero-title text-5xl font-heading font-bold text-primary mb-2">
+    <div class="flex flex-col items-center px-6 lg:flex-row lg:px-20">
+      <div class="flex-shrink-0 relative z-20 lg:w-3/5">
+        <h1 class="hero-title text-3xl font-heading font-bold text-primary mb-2 lg:text-5xl">
           <div>G</div><div>r</div><div>e</div><div>g</div> <div>N</div><div>i</div><div>c</div><div>h</div><div>o</div><div>l</div><div>s</div><div>o</div><div>n</div>
         </h1>
         <p class="hero-tagline">
@@ -133,17 +133,6 @@
 <style lang="scss" scoped>
   .hero {
     @apply relative z-1 bg-white flex items-center w-full h-screen overflow-hidden;
-
-    &:before {
-      content: '';
-      width: 40vw;
-      height: 40vw;
-      position: absolute;
-      background-color: #d9f3ee;
-      left: -20vw;
-      bottom: -27vh;
-      @apply absolute rounded-full z-20 hidden;
-    }
   }
 
   .hero-title {
@@ -161,8 +150,12 @@
   }
 
   .hero-tagline {
-    @apply text-lilac text-xl w-10/12 leading-relaxed opacity-0 transform translate-y-8;
+    @apply text-lilac text-base w-10/12 leading-relaxed opacity-0 transform translate-y-8;
     letter-spacing: 1px;
+
+    @screen lg {
+      @apply text-xl;
+    }
   }
 
   .text-underline {
