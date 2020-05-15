@@ -25,12 +25,14 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/css/fonts.scss',
+    '~/assets/css/type.scss',
+    '~/assets/css/animations.scss',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/gsap.js', ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -66,6 +68,5 @@ export default {
     */
     extend(config, ctx) {
     },
-    transpile: ['gsap'],
   },
 };

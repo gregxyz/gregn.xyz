@@ -157,20 +157,6 @@
       @apply text-xl;
     }
   }
-
-  .text-underline {
-    @apply relative inline-block z-1;
-
-    &:before {
-      content: '';
-      width: 100%;
-      height: 0.2em;
-      bottom: 7px;
-      opacity: 0.4;
-      z-index: -1;
-      @apply absolute bg-secondary -z-1;
-    }
-  }
   
   .reveal {
     @apply absolute top-0 right-0 left-0 w-0 z-50;

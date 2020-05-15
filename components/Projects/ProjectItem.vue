@@ -4,13 +4,16 @@
     <img
       :src="project.image"
       alt=""
-      class="w-full h-full object-cover"
+      class="project-image w-full h-full object-cover"
     >
     <div class="project-content">
       <h4 class="text-primary text-2xl mb-3">
         {{ project.title }}.
       </h4>
-      <ul v-if="project.technologies">
+      <ul
+        v-if="project.technologies"
+        class="project-technologies"
+      >
         <li
           v-for="(tech, key) in project.technologies"
           :key="key"
@@ -32,7 +35,7 @@
   };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .project-item {
     @apply relative overflow-hidden;
 
@@ -51,6 +54,12 @@
         @apply mb-0;
       }
     }
+
+    &:nth-child(odd) {
+      @screen lg {
+        @apply transform -translate-y-48;
+      }
+    }
   }
 
   .project-content {
@@ -59,21 +68,21 @@
     @screen lg {
       @apply pt-8 px-10
     }
+  }
 
-    ul {
-      @apply flex flex-wrap;
+  .project-technologies {
+    @apply flex flex-wrap;
 
-      li {
-        @apply text-lilac leading-relaxed;
+    li {
+      @apply text-lilac leading-relaxed;
 
-        &:not(:last-child):after {
-          content: '';
-          width: 6px;
-          height: 6px;
-          border-radius: 6px;
-          transform: translateY(-1px);
-          @apply bg-sky inline-block ml-2 mr-2;
-        }
+      &:not(:last-child):after {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 6px;
+        transform: translateY(-1px);
+        @apply bg-sky inline-block ml-2 mr-2;
       }
     }
   }

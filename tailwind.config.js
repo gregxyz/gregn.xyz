@@ -15,7 +15,8 @@ module.exports = {
       colors: {
         primary: '#2f2653',
         secondary: '#8cd5f5',
-        lilac: '#a29db5',
+        lilac: '#79738e',
+        'lilac-dark': '#79738e',
         sky: '#DDF5F8',
         cream: '#F7F3E5',
         pink: '#FCCFCB',
@@ -28,6 +29,7 @@ module.exports = {
         80: 80,
         90: 90,
         100: 100,
+        110: 110,
       },
     },
   },
