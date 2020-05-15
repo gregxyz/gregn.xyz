@@ -25,9 +25,9 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/css/fonts.scss',
-    '~/assets/css/type.scss',
-    '~/assets/css/animations.scss',
+    '~/assets/scss/_fonts.scss',
+    '~/assets/scss/_type.scss',
+    '~/assets/scss/_animations.scss',
   ],
   /*
   ** Plugins to load before mounting the App

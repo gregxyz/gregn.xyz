@@ -57,7 +57,7 @@
     },
     methods: {
       closeModal() {
-        this.componentMountAnimations('reverse');
+        this.componentModalAnimations('reverse');
       },
       componentModalAnimations(reverse) {
         const timeline = gsap.timeline({
