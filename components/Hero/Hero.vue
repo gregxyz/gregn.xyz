@@ -32,17 +32,17 @@
         timeline.to('.reveal-1', {
           width: '100%',
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         });
         timeline.to('.reveal-2', {
           width: '100%',
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         }, '-=0.4');
         timeline.to('.reveal-3', {
           width: '100%',
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         }, '-=0.4');
         timeline.set(document.querySelectorAll('.reveal'), {
           left: 'auto',
@@ -50,17 +50,17 @@
         timeline.to('.reveal-1', {
           width: '50vw',
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         });
         timeline.to('.reveal-2', {
           width: '35vw',
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         }, '-=0.4');
         timeline.to('.reveal-3', {
           width: '10vw',
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         }, '-=0.4');
         timeline.to(document.querySelectorAll('.hero-title div'), {
           x: 0,

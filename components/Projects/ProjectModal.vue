@@ -83,17 +83,17 @@
         timeline.to('.project-modal-reveal-1', {
           width: '100%',
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         });
         timeline.to('.project-modal-reveal-2', {
           width: '100%',
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         }, '-=0.6');
         timeline.to('.project-modal-reveal-3', {
           width: '100%',
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         }, '-=0.6');
         timeline.set(document.querySelectorAll('.project-modal-reveal'), {
           left: 'auto',
@@ -104,17 +104,17 @@
         timeline.to('.project-modal-reveal-1', {
           width: 0,
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         });
         timeline.to('.project-modal-reveal-2', {
           width: 0,
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         }, '-=0.6');
         timeline.to('.project-modal-reveal-3', {
           width: 0,
           duration: 0.8,
-          ease: 'power3.out',
+          ease: 'cubicEaseSlowMiddle',
         }, '-=0.6');
         timeline.to('.project-modal-image', {
           x: 0,
