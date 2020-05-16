@@ -25,14 +25,10 @@
 </template>
 
 <script>
-  import { gsap } from 'gsap/all';
-
   export default {
-    data: () => ({
-    }),
     methods: {
       heroTimeline() {
-        const timeline = gsap.timeline();
+        const timeline = this.$gsap.timeline();
         timeline.to('.reveal-1', {
           width: '100%',
           duration: 0.8,
@@ -87,7 +83,7 @@
         });
       },
       viewProjectsEnter() {
-        const timeline = gsap.timeline();
+        const timeline = this.$gsap.timeline();
         timeline.set('.reveal-3', {
           width: '10vw',
         });
@@ -98,7 +94,7 @@
         });
       },
       viewProjectsLeave() {
-        const timeline = gsap.timeline();
+        const timeline = this.$gsap.timeline();
         timeline.to('.reveal-3', {
           width: '10vw',
           height: '33.33%',
@@ -107,21 +103,47 @@
         });
       },
       goToProjects() {
-        const timeline = gsap.timeline({
+        const timeline = this.$gsap.timeline({
           onComplete: () => {
-            document.querySelector('.projects').scrollIntoView({
-              behavior: 'smooth',
+            timeline.set('.hero-title', {
+              clearProps: 'all',
+            });
+            timeline.set('.hero-tagline', {
+              clearProps: 'all',
+            });
+            timeline.set('.reveal-3', {
+              clearProps: 'y',
             });
           },
         });
-        timeline.to('.reveal-3', {
-          width: '100vw',
-          duration: 0.5,
+        timeline.to('.hero-title', {
+          y: '-10vh',
+          duration: 1,
+          ease: 'slow(0.5, 0.7, false)',
         });
-        timeline.to('.reveal-3', {
-          height: '100vw',
-          duration: 0.5,
-        });
+        timeline.to('.hero-tagline', {
+          y: '-10vh',
+          ease: 'slow(0.5, 0.7, false)',
+        }, '-=0.8');
+        timeline.to('.reveal', {
+          y: '-10vh',
+          ease: 'slow(0.5, 0.7, false)',
+        }, '-=1.0');
+        setTimeout(() => {
+          this.$gsap.to(window, {
+            duration: 3,
+            scrollTo: '.projects',
+            ease: 'slow(0.1, 0.9, false)',
+          });
+        }, timeline.duration() - 0.2);
+        // timeline.to('.reveal-3', {
+        //   width: '100vw',
+        //   duration: 0.5,
+        // });
+        // timeline.to('.reveal-3', {
+        //   height: '100vw',
+        //   duration: 0.5,
+        // });
       },
     },
     mounted() {

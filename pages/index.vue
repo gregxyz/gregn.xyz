@@ -6,7 +6,6 @@
 </template>
 
 <script>
-  import { gsap } from 'gsap/all';
   import Hero from '~/components/Hero/Hero';
   import Projects from '~/components/Projects/Projects';
 
@@ -19,7 +18,7 @@
       observerText() {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
-            const timeline = gsap.timeline();
+            const timeline = this.$gsap.timeline();
             timeline.set(entry.target, {
               opacity: 0,
               x: '-3vw',
@@ -48,7 +47,7 @@
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              const timeline = gsap.timeline();
+              const timeline = this.$gsap.timeline();
               timeline.to(entry.target.querySelector('.project-reveal'), {
                 height: 0,
                 ease: 'power3.out',

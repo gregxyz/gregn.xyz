@@ -33,6 +33,9 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    {
+      src: '~/plugins/gsap.client.js',
+    },
   ],
   /*
   ** Nuxt.js dev-modules

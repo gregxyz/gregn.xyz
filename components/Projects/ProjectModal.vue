@@ -46,8 +46,6 @@
 </template>
 
 <script>
-  import { gsap } from 'gsap/all';
-
   export default {
     props: {
       project: {
@@ -60,7 +58,7 @@
         this.componentModalAnimations('reverse');
       },
       componentModalAnimations(reverse) {
-        const timeline = gsap.timeline({
+        const timeline = this.$gsap.timeline({
           onReverseComplete: () => {
             this.$emit('close-modal');
           },
@@ -69,6 +67,7 @@
         if (reverse) {
           timeline.reverse();
         }
+        
         timeline.set('.project-modal-image', {
           x: '3vw',
           opacity: 0,
@@ -90,12 +89,12 @@
           width: '100%',
           duration: 0.8,
           ease: 'power3.out',
-        }, '-=0.4');
+        }, '-=0.6');
         timeline.to('.project-modal-reveal-3', {
           width: '100%',
           duration: 0.8,
           ease: 'power3.out',
-        }, '-=0.4');
+        }, '-=0.6');
         timeline.set(document.querySelectorAll('.project-modal-reveal'), {
           left: 'auto',
         });
@@ -111,24 +110,24 @@
           width: 0,
           duration: 0.8,
           ease: 'power3.out',
-        }, '-=0.4');
+        }, '-=0.6');
         timeline.to('.project-modal-reveal-3', {
           width: 0,
           duration: 0.8,
           ease: 'power3.out',
-        }, '-=0.4');
+        }, '-=0.6');
         timeline.to('.project-modal-image', {
           x: 0,
           opacity: 1,
           duration: 1,
           ease: 'power3.out',
-        }, '-=1.0');
+        }, '-=1.2');
         timeline.to('.project-modal-content', {
           x: 0,
           opacity: 1,
           duration: 1,
           ease: 'power3.out',
-        }, '-=0.8');
+        }, '-=1.0');
       },
     },
     mounted() {
