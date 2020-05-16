@@ -2,7 +2,7 @@
   <section class="hero">
     <div class="flex flex-col items-center px-6 lg:flex-row lg:px-20">
       <div class="flex-shrink-0 relative z-20 lg:w-3/5">
-        <h1 class="hero-title text-3xl font-heading font-bold text-primary mb-2 lg:text-5xl">
+        <h1 class="hero-title text-3xl font-heading font-bold text-primary mb-2 lg:text-3.5vw">
           <div>G</div><div>r</div><div>e</div><div>g</div> <div>N</div><div>i</div><div>c</div><div>h</div><div>o</div><div>l</div><div>s</div><div>o</div><div>n</div>
         </h1>
         <p class="hero-tagline">
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+  import screenSize from '~/mixins/screenSize';
+
   export default {
     methods: {
       heroTimeline() {
@@ -48,12 +50,12 @@
           left: 'auto',
         });
         timeline.to('.reveal-1', {
-          width: '50vw',
+          width: this.screenLg ? '50vw' : '21vw',
           duration: 0.8,
           ease: 'cubicEaseSlowMiddle',
         });
         timeline.to('.reveal-2', {
-          width: '35vw',
+          width: this.screenLg ? '35vw' : '16vw',
           duration: 0.8,
           ease: 'cubicEaseSlowMiddle',
         }, '-=0.4');
@@ -62,21 +64,30 @@
           duration: 0.8,
           ease: 'cubicEaseSlowMiddle',
         }, '-=0.4');
-        timeline.to(document.querySelectorAll('.hero-title div'), {
-          x: 0,
+        timeline.to('.hero-title div', {
+          y: 0,
           opacity: 1,
-          duration: 0.8,
+          duration: 0.6,
+          stagger: {
+            each: 0.3,
+            ease: 'cubicEaseSlowMiddle',
+            axis: 'y',
+          },
         }, '-=1');
         timeline.to('.hero-tagline', {
           y: 0,
           opacity: 1,
           duration: 0.6,
-        }, '-=0.3');
-        timeline.to(document.querySelectorAll('.view-projects-btn div'), {
+        }, '-=0.6');
+        timeline.to('.view-projects-btn div', {
           x: 0,
           opacity: 1,
           duration: 0.8,
-        });
+          stagger: {
+            ease: 'power3.in',
+            axis: 'x',
+          },
+        }, '-=0.5');
         timeline.set('.view-projects-btn', {
           zIndex: 60,
           pointerEvents: 'auto',
@@ -103,52 +114,17 @@
         });
       },
       goToProjects() {
-        const timeline = this.$gsap.timeline({
-          onComplete: () => {
-            timeline.set('.hero-title', {
-              clearProps: 'all',
-            });
-            timeline.set('.hero-tagline', {
-              clearProps: 'all',
-            });
-            timeline.set('.reveal-3', {
-              clearProps: 'y',
-            });
-          },
-        });
-        timeline.to('.hero-title', {
-          y: '-10vh',
+        this.$gsap.to(window, {
           duration: 1,
-          ease: 'slow(0.5, 0.7, false)',
+          scrollTo: '.projects',
+          ease: 'cubicEaseSlowMiddle',
         });
-        timeline.to('.hero-tagline', {
-          y: '-10vh',
-          ease: 'slow(0.5, 0.7, false)',
-        }, '-=0.8');
-        timeline.to('.reveal', {
-          y: '-10vh',
-          ease: 'slow(0.5, 0.7, false)',
-        }, '-=1.0');
-        setTimeout(() => {
-          this.$gsap.to(window, {
-            duration: 3,
-            scrollTo: '.projects',
-            ease: 'slow(0.1, 0.9, false)',
-          });
-        }, timeline.duration() - 0.2);
-        // timeline.to('.reveal-3', {
-        //   width: '100vw',
-        //   duration: 0.5,
-        // });
-        // timeline.to('.reveal-3', {
-        //   height: '100vw',
-        //   duration: 0.5,
-        // });
       },
     },
     mounted() {
       this.heroTimeline();
     },
+    mixins: [screenSize],
   };
 </script>
 
@@ -165,7 +141,7 @@
 
       @for $i from 1 through 13 {
         &:nth-child(#{$i}) {
-          transform: translateX(#{$i * 1.5}vw);
+          transform: translateY(#{$i * 0.8}vh);
         }
       }
     }
@@ -176,7 +152,7 @@
     letter-spacing: 1px;
 
     @screen lg {
-      @apply text-xl;
+      @apply text-1.5vw;
     }
   }
   
@@ -194,10 +170,13 @@
   }
 
   .view-projects-btn {
-    @apply absolute right-0 text-primary font-para tracking-widest pointer-events-none;
+    @apply absolute right-0 text-primary font-para tracking-widest pointer-events-none text-2xl;
     bottom: 10vh;
     transform: translateX(-15vw);
-    font-size: 4vw;
+
+    @screen lg {
+      @apply text-4vw;
+    }
 
     &:focus {
       outline: none;
@@ -208,7 +187,7 @@
 
       @for $i from 1 through 12 {
         &:nth-child(#{$i}) {
-          transform: translateX(#{$i * 5}vw);
+          transform: translateX(#{$i * 2}vw);
         }
       }
     }

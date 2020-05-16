@@ -21,6 +21,17 @@ module.exports = {
         cream: '#F7F3E5',
         pink: '#FCCFCB',
       },
+      fontSize: {
+        '1vw': '1vw',
+        '1.5vw': '1.5vw',
+        '2vw': '2vw',
+        '2.5vw': '2.5vw',
+        '3vw': '3vw',
+        '3.5vw': '3.5vw',
+        '4vw': '4vw',
+        '4.5vw': '4.5vw',
+        '5vw': '5vw',
+      },
       zIndex: {
         '-1': -1,
         1: 1,

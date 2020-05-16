@@ -72,4 +72,7 @@ export default {
     extend(config, ctx) {
     },
   },
+  tailwindcss: {
+    exposeConfig: true,
+  },
 };

@@ -37,7 +37,7 @@
 
 <style lang="scss">
   .project-item {
-    @apply relative overflow-hidden;
+    @apply relative overflow-hidden cursor-pointer;
 
     img {
       height: 250px;
