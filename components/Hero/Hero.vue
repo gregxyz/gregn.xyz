@@ -130,7 +130,8 @@
 
 <style lang="scss" scoped>
   .hero {
-    @apply relative z-1 bg-white flex items-center w-full h-screen overflow-hidden;
+    @apply relative z-1 bg-white flex items-center w-full min-h-screen overflow-hidden;
+    min-height: -webkit-fill-available;
   }
 
   .hero-title {
