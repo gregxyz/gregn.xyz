@@ -5,13 +5,3 @@
     <div class="w-1/3 bg-pink h-8" />
   </footer>
 </template>
-
-<script>
-  export default {
-
-  };
-</script>
-
-<style lang="scss" scoped>
-
-</style>
