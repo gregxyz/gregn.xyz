@@ -8,6 +8,7 @@
 <script>
   import Hero from '~/components/Hero/Hero';
   import Projects from '~/components/Projects/Projects';
+  import screenSize from '~/mixins/screenSize';
 
   export default {
     components: {
@@ -35,7 +36,7 @@
           });
         }, {
           root: null,
-          rootMargin: '-15% 0px',
+          rootMargin: `${ this.screenMd ? '-15%' : '-10%' } 0px`,
           threshold: 0,
         });
 
@@ -58,7 +59,7 @@
           });
         }, {
           root: null,
-          rootMargin: '-15% 0px',
+          rootMargin: `${ this.screenMd ? '-15%' : '-10%' } 0px`,
           threshold: 0,
         });
 
@@ -71,5 +72,6 @@
       this.observerText();
       this.observerProjectImages();
     },
+    mixins: [screenSize],
   };
 </script>
