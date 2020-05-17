@@ -1,5 +1,22 @@
 <template>
   <section class="hero">
+    <ul
+      v-if="socials"
+      class="absolute top-0 left-0 flex pl-20 pt-10"
+    >
+      <li
+        v-for="(social, index) in socials"
+        :key="index"
+        class="mr-5 text-lilac font-para transition-colors ease-in-out duration-300 hover:text-primary"
+      >
+        <a
+          :href="social.url"
+          target="_blank"
+        >
+          {{ social.name }}
+        </a>
+      </li>
+    </ul>
     <div class="flex flex-col items-center px-6 lg:flex-row lg:px-20">
       <div class="flex-shrink-0 relative z-20 lg:w-3/5">
         <h1 class="hero-title text-3xl font-heading font-bold text-primary mb-2 lg:text-3.5vw">
@@ -28,6 +45,18 @@
   import screenSize from '~/mixins/screenSize';
 
   export default {
+    data: (() => ({
+      socials: [
+        {
+          name: 'LinkedIn',
+          url: 'http://linkedin.com',
+        },
+        {
+          name: 'Github',
+          url: 'http://github.com',
+        },
+      ],
+    })),
     methods: {
       heroTimeline() {
         const timeline = this.$gsap.timeline();

@@ -16,7 +16,6 @@ module.exports = {
         primary: '#2f2653',
         secondary: '#8cd5f5',
         lilac: '#79738e',
-        'lilac-dark': '#79738e',
         sky: '#DDF5F8',
         cream: '#F7F3E5',
         pink: '#FCCFCB',
