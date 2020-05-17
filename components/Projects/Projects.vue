@@ -1,10 +1,10 @@
 <template>
   <section class="projects">
     <div class="lg:pr-16">
-      <h3 class="font-para text-primary tracking-widest text-4xl mb-3 animate-text-left">
+      <h3 class="font-para text-primary tracking-widest text-4xl mb-3 animate-text-left lg:text-2.5vw">
         Projects.
       </h3>
-      <p class="text-base text-lilac tracking-wider mb-20 lg:text-lg animate-text-left">
+      <p class="text-base text-lilac tracking-wider mb-20 animate-text-left lg:text-1.25vw">
         Some projects I have worked on while working at various agencies, most of the technologies used throughout are; Vue, Nuxt, Vuex, Javascript, WordPress and Laravel.
       </p>
     </div>

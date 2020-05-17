@@ -23,7 +23,9 @@ module.exports = {
       },
       fontSize: {
         '1vw': '1vw',
+        '1.25vw': '1.25vw',
         '1.5vw': '1.5vw',
+        '1.75vw': '1.75vw',
         '2vw': '2vw',
         '2.5vw': '2.5vw',
         '3vw': '3vw',

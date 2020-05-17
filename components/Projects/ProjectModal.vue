@@ -5,12 +5,12 @@
     <div class="project-modal-reveal project-modal-reveal-3 bg-pink" />
     <button
       @click="closeModal"
-      class="absolute top-0 left-0 p-10 focus:outline-none"
+      class="absolute top-0 left-0 p-5 focus:outline-none z-1 lg:p-10"
     >
       close
     </button>
 
-    <div class="project-modal-content pt-20 pl-20 pb-20 lg:w-1/2">
+    <div class="project-modal-content pt-20 p-6 lg:pl-20 lg:pt-20 lg:pb-20 lg:pr-0 lg:w-1/2">
       <h3 class="title-heading text-underline mb-8 animate-text-in">
         {{ project.title }}.
       </h3>
@@ -35,11 +35,11 @@
         />
       </ul>
     </div>
-    <div class="lg:w-1/2">
+    <div class="hidden lg:block lg:w-1/2">
       <img
         :src="project.image"
         alt=""
-        class="project-modal-image w-full h-screen object-cover pl-24"
+        class="project-modal-image w-full h-screen object-cover lg:pl-24"
       >
     </div>
   </section>
@@ -139,7 +139,11 @@
 
 <style lang="scss" scoped>
   .project-modal {
-    @apply fixed top-0 left-0 z-100 w-screen h-screen flex items-center;
+    @apply fixed top-0 left-0 z-100 w-screen h-screen flex flex-col;
+
+    @screen lg {
+      @apply flex-row items-center;
+    }
   }
 
   .project-modal-reveal {

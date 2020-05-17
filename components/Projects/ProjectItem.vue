@@ -7,7 +7,7 @@
       class="project-image w-full h-full object-cover"
     >
     <div class="project-content">
-      <h4 class="text-primary text-2xl mb-3">
+      <h4 class="text-primary text-2xl mb-3 lg:text-1.75vw">
         {{ project.title }}.
       </h4>
       <ul
@@ -75,6 +75,10 @@
 
     li {
       @apply text-lilac leading-relaxed;
+
+      @screen lg {
+        @apply text-1.25vw;
+      }
 
       &:not(:last-child):after {
         content: '';
