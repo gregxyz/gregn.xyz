@@ -75,4 +75,9 @@ export default {
   tailwindcss: {
     exposeConfig: true,
   },
+  purge: {
+    options: {
+      whitelistPatterns: [/^.[^\.]*\.[^\. "']*/],
+    },
+  },
 };
