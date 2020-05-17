@@ -1,7 +1,7 @@
 <template>
   <section>
     <Hero />
-    <Projects class="pt-64 mb-64" />
+    <Projects class="pt-64 mb-24" />
   </section>
 </template>
 
