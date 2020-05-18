@@ -7,7 +7,12 @@
 
 <script>
   export default {
-    props: ['text'],
+    props: {
+      text: {
+        type: Object,
+        required: true,
+      },
+    },
     computed: {
       richText() {
         return this.$storyapi.richTextResolver.render(this.text);
