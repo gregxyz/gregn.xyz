@@ -15,9 +15,9 @@
         class="project-technologies"
       >
         <li
-          v-for="(tech, key) in project.technologies"
-          :key="key"
-          v-text="tech"
+          v-for="item in project.technologies"
+          :key="item._uid"
+          v-text="item.technology"
         />
       </ul>
     </div>

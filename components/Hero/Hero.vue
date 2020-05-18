@@ -19,12 +19,14 @@
     </ul>
     <div class="flex flex-col items-center px-6 lg:flex-row lg:px-20">
       <div class="flex-shrink-0 relative z-20 lg:w-3/5">
-        <h1 class="hero-title text-3xl font-heading font-bold text-primary mb-2 lg:text-3.5vw">
-          <div>G</div><div>r</div><div>e</div><div>g</div> <div>N</div><div>i</div><div>c</div><div>h</div><div>o</div><div>l</div><div>s</div><div>o</div><div>n</div>
-        </h1>
-        <p class="hero-tagline">
-          A <span class="text-underline">Front End Developer</span> based in Manchester. I'm passionate about <span class="text-underline">REST API's</span>, <span class="text-underline">Graph QL</span>, <span class="text-underline">Headless CMS'</span> & the latest in <span class="text-underline">Javascript</span> while maintaining a strong emphasis on performance, SEO and accessibility.
-        </p>
+        <h1
+          v-html="blok.title"
+          class="hero-title text-3xl font-heading font-bold text-primary mb-2 lg:text-3.5vw"
+        />
+        <p
+          v-html="blok.description"
+          class="hero-tagline"
+        />
       </div>
     </div>
     <button
@@ -45,6 +47,12 @@
   import screenSize from '~/mixins/screenSize';
 
   export default {
+    props: {
+      blok: {
+        type: Object,
+        required: true,
+      },
+    },
     data: (() => ({
       socials: [
         {
@@ -166,7 +174,7 @@
   .hero-title {
     @apply inline-block;
 
-    div {
+    /deep/ div {
       @apply inline-block opacity-0;
 
       @for $i from 1 through 13 {

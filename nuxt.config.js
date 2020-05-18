@@ -1,3 +1,4 @@
+require('dotenv-flow').config();
 
 export default {
   mode: 'spa',
@@ -33,9 +34,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {
-      src: '~/plugins/gsap.client.js',
-    },
+    '~/plugins/gsap.client.js',
+    '~/plugins/components.js',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -55,6 +55,7 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/apollo',
   ],
   /*
   ** Axios module configuration
@@ -74,5 +75,18 @@ export default {
   },
   tailwindcss: {
     exposeConfig: true,
+  },
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://gapi.storyblok.com/v1/api',
+        httpLinkOptions: {
+          headers: {
+            token: process.env.STORYBLOK_TOKEN,
+            version: process.env.STORYBLOK_VERSION,
+          },
+        },
+      },
+    },
   },
 };
