@@ -1,5 +1,8 @@
 <template>
-  <section class="screen-fill">
+  <section
+    class="screen-fill"
+    :class="{ 'h-screen': $apollo.loading }"
+  >
     <component
       v-if="PageItem.content.component"
       :blok="PageItem.content.body"
