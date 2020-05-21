@@ -2,7 +2,7 @@
   <section class="hero">
     <ul
       v-if="blok.socialLinks"
-      class="socials absolute top-0 left-0 flex pl-20 pt-10 opacity-0"
+      class="socials absolute top-0 left-0 flex opacity-0 pt-6 pl-6 lg:pl-20 lg:pt-10"
     >
       <li
         v-for="social in blok.socialLinks"
@@ -183,6 +183,14 @@
 
     @screen lg {
       @apply text-1.5vw;
+    }
+
+    /deep/ .text-underline:before {
+      bottom: 6px;
+
+      @screen xl {
+        bottom: 0.5vw;
+      }
     }
   }
   
