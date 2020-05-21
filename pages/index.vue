@@ -1,10 +1,8 @@
 <template>
-  <section
-    class="screen-fill"
-    :class="{ 'h-screen': $apollo.loading }"
-  >
+  <section class="screen-fill">
+    <Loader v-if="$apollo.loading" />
     <component
-      v-if="PageItem.content.component"
+      v-else-if="PageItem.content.component"
       :blok="PageItem.content.body"
       :is="PageItem.content.component"
     />
@@ -13,9 +11,13 @@
 
 <script>
   import gql from 'graphql-tag';
+  import Loader from '~/components/Loader/Loader';
   import screenSize from '~/mixins/screenSize';
 
   export default {
+    components: {
+      Loader,
+    },
     data: (() => ({
       PageItem: {
         content: {
