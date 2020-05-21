@@ -74,19 +74,27 @@
     @apply flex flex-wrap;
 
     li {
-      @apply text-lilac leading-relaxed;
+      @apply text-lilac leading-relaxed text-sm leading-relaxed;
+
+      @screen sm {
+        @apply text-base;
+      }
 
       @screen lg {
         @apply text-1.25vw;
       }
 
-      &:not(:last-child):after {
+      &:not(:last-child) {
+        @apply mr-2;
+      }
+
+      &:not(:first-child):before {
         content: '';
         width: 6px;
         height: 6px;
         border-radius: 6px;
         transform: translateY(-1px);
-        @apply bg-sky inline-block ml-2 mr-2;
+        @apply bg-sky inline-block mr-2;
       }
     }
   }

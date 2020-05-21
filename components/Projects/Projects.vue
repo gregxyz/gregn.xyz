@@ -1,12 +1,12 @@
 <template>
-  <section class="projects pt-64 mb-24">
+  <section class="projects pt-20 mb-10 lg:pt-64 lg:mb-24">
     <div class="lg:pr-16">
       <h3 class="font-para text-primary tracking-widest text-4xl mb-3 animate-text-left lg:text-2.5vw">
         {{ blok.title }}.
       </h3>
       <p
         v-if="blok.description"
-        class="text-base text-lilac tracking-wider mb-20 animate-text-left lg:text-1.25vw"
+        class="text-base text-lilac tracking-wider animate-text-left mb-10 lg:mb-20 lg:text-1.25vw"
       >
         {{ blok.description }}
       </p>
@@ -90,12 +90,16 @@
   .projects {
     @apply relative px-6;
 
-    @screen lg {
+    @screen md {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-auto-rows: minmax(min-content, max-content);
-      gap: 100px 100px;
+      gap: 20px 50px;
       @apply px-20;
+    }
+
+    @screen lg {
+      gap: 100px;
     }
   }
 </style>

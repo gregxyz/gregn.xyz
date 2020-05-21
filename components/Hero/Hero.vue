@@ -1,16 +1,16 @@
 <template>
   <section class="hero">
     <ul
-      v-if="socials"
-      class="absolute top-0 left-0 flex pl-20 pt-10"
+      v-if="blok.socialLinks"
+      class="socials absolute top-0 left-0 flex pl-20 pt-10 opacity-0"
     >
       <li
-        v-for="(social, index) in socials"
-        :key="index"
+        v-for="social in blok.socialLinks"
+        :key="social._uid"
         class="mr-5 text-lilac font-para transition-colors ease-in-out duration-300 hover:text-primary"
       >
         <a
-          :href="social.url"
+          :href="social.link.url"
           target="_blank"
         >
           {{ social.name }}
@@ -53,18 +53,6 @@
         required: true,
       },
     },
-    data: (() => ({
-      socials: [
-        {
-          name: 'LinkedIn',
-          url: 'http://linkedin.com',
-        },
-        {
-          name: 'Github',
-          url: 'http://github.com',
-        },
-      ],
-    })),
     methods: {
       heroTimeline() {
         const timeline = this.$gsap.timeline();
@@ -111,6 +99,10 @@
             axis: 'y',
           },
         }, '-=1');
+        timeline.to('.socials', {
+          opacity: 1,
+          duration: 0.6,
+        }, '-=0.6');
         timeline.to('.hero-tagline', {
           y: 0,
           opacity: 1,
@@ -138,7 +130,7 @@
         timeline.to('.reveal-3', {
           width: '26vw',
           duration: 0.4,
-          ease: 'slow(0.3, 0.7, false)',
+          ease: 'cubicEaseSlowMiddle',
         });
       },
       viewProjectsLeave() {
@@ -147,14 +139,14 @@
           width: '10vw',
           height: '33.33%',
           duration: 0.4,
-          ease: 'slow(0.3, 0.7, false)',
+          ease: 'cubicEaseSlowMiddle',
         });
       },
       goToProjects() {
         this.$gsap.to(window, {
           duration: 1,
           scrollTo: '.projects',
-          ease: 'cubicEaseSlowMiddle',
+          ease: 'power3.out',
         });
       },
     },

@@ -2,7 +2,7 @@
   @apply font-para text-primary tracking-widest text-4xl mb-3;
 
   @screen lg {
-    @apply text-2.5vw mb-8;
+    @apply text-2.5vw mb-2;
   }
 }
 
@@ -16,7 +16,7 @@
 
 .rich-text {
   p {
-    @apply text-base text-lilac tracking-wider mb-20;
+    @apply text-base text-lilac tracking-wider;
   
     @screen lg {
       @apply text-1.25vw;

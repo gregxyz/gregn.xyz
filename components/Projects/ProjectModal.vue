@@ -5,24 +5,50 @@
     <div class="project-modal-reveal project-modal-reveal-3 bg-pink" />
     <button
       @click="closeModal"
-      class="absolute top-0 left-0 p-5 focus:outline-none z-1 lg:p-10"
+      class="close-modal absolute top-0 left-0 p-3 focus:outline-none z-1 lg:p-6"
     >
       close
     </button>
 
-    <div class="project-modal-content pt-20 p-6 lg:pl-20 lg:pt-20 lg:pb-20 lg:pr-0 lg:w-1/2">
-      <h3 class="title-heading text-underline mb-8 animate-text-in">
+    <div class="project-modal-content pt-20 p-6 lg:pl-20 lg:pt-20 lg:pr-0 lg:w-1/2">
+      <h3 class="title-heading text-underline">
         {{ project.title }}.
       </h3>
 
-      <RichText :text="project.description" />
+      <p class="text-primary font-para flex items-center tracking-widest mb-8 text-sm xl:text-1vw">
+        <span class="text-gray-400 tracking-widest pr-1">
+          Status:
+        </span>
+        <a
+          v-if="project.link.url.length"
+          :href="project.link.url"
+          target="_blank"
+          class="font-bold"
+        >
+          Live
+          <span class="bg-green-400 h-2 w-2 rounded-full inline-block" />
+        </a>
+        <template
+          v-else
+        >
+          <span class="font-bold">
+            In Development
+          </span>
+          <span class="bg-orange-400 h-2 w-2 rounded-full inline-block ml-2" />
+        </template>
+      </p>
+
+      <RichText
+        :text="project.description"
+        class="mb-8"
+      />
 
       <h4 class="sub-heading mb-2">
         Built with:
       </h4>
       <ul
         v-if="project.technologies"
-        class="project-technologies lg:text-lg"
+        class="project-technologies mb-12 lg:mb-20 lg:text-lg"
       >
         <li
           v-for="item in project.technologies"
@@ -31,11 +57,11 @@
         />
       </ul>
     </div>
-    <div class="hidden lg:block lg:w-1/2">
+    <div class="hidden lg:block lg:w-1/2 lg:pl-24">
       <img
         :src="project.image"
         alt=""
-        class="project-modal-image w-full h-screen object-cover lg:pl-24"
+        class="project-modal-image w-full h-screen object-cover"
       >
     </div>
   </section>
@@ -80,6 +106,9 @@
         timeline.set('.project-modal', {
           backgroundColor: 'rgba(255, 255, 255, 0)',
           duration: 0.8,
+        });
+        timeline.set('.close-modal', {
+          opacity: 0,
         });
         timeline.to('.project-modal-reveal-1', {
           width: '100%',
@@ -129,6 +158,11 @@
           duration: 1,
           ease: 'power3.out',
         }, '-=1.0');
+        timeline.to('.close-modal', {
+          opacity: 1,
+          duration: 1,
+          ease: 'power3.out',
+        }, '-=0.5');
       },
     },
     mounted() {
@@ -140,10 +174,10 @@
 
 <style lang="scss" scoped>
   .project-modal {
-    @apply fixed top-0 left-0 z-100 w-screen h-screen flex flex-col;
+    @apply fixed top-0 left-0 z-100 w-screen h-screen flex flex-col overflow-scroll;
 
     @screen lg {
-      @apply flex-row items-center;
+      @apply flex-row items-center overflow-hidden;
     }
   }
 
