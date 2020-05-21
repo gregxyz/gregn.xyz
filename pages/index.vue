@@ -1,5 +1,5 @@
 <template>
-  <section class="min-h-screen">
+  <section class="screen-fill">
     <component
       v-if="PageItem.content.component"
       :blok="PageItem.content.body"
@@ -70,3 +70,10 @@
     mixins: [screenSize],
   };
 </script>
+
+<style lang="scss">
+  .screen-fill {
+    @apply min-h-screen;
+    min-height: -webkit-fill-available!important;
+  }
+</style>

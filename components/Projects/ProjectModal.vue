@@ -28,9 +28,7 @@
           Live
           <span class="bg-green-400 h-2 w-2 rounded-full inline-block" />
         </a>
-        <template
-          v-else
-        >
+        <template v-else>
           <span class="font-bold">
             In Development
           </span>
