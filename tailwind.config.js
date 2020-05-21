@@ -9,7 +9,7 @@ module.exports = {
     fontFamily: {
       heading: ['Josefin Sans', 'sans-serif'],
       body: ['PT Sans', 'sans-serif'],
-      para: ['LeonSans', 'sans-serif'],
+      leon: ['LeonSans', 'sans-serif'],
     },
     extend: {
       colors: {

@@ -1,7 +1,7 @@
 <template>
   <section class="projects pt-20 mb-10 lg:pt-64 lg:mb-24">
     <div class="lg:pr-16">
-      <h3 class="font-para text-primary tracking-widest text-4xl mb-3 animate-text-left lg:text-2.5vw">
+      <h3 class="font-leon text-primary tracking-widest text-4xl mb-3 animate-text-left lg:text-2.5vw">
         {{ blok.title }}.
       </h3>
       <p

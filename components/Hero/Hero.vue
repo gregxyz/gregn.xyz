@@ -7,7 +7,7 @@
       <li
         v-for="social in blok.socialLinks"
         :key="social._uid"
-        class="mr-5 text-lilac font-para transition-colors ease-in-out duration-300 hover:text-primary"
+        class="mr-5 text-lilac font-leon transition-colors ease-in-out duration-300 hover:text-primary"
       >
         <a
           :href="social.link.url"
@@ -200,7 +200,7 @@
   }
 
   .view-projects-btn {
-    @apply absolute right-0 text-primary font-para tracking-widest pointer-events-none text-2xl;
+    @apply absolute right-0 text-primary font-leon tracking-widest pointer-events-none text-2xl;
     bottom: 10vh;
     transform: translateX(-15vw);
 

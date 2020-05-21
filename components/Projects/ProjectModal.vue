@@ -15,7 +15,7 @@
         {{ project.title }}.
       </h3>
 
-      <p class="text-primary font-para flex items-center tracking-widest mb-8 text-sm xl:text-1vw">
+      <p class="text-primary font-leon flex items-center tracking-widest mb-8 text-sm xl:text-1vw">
         <span class="text-gray-400 tracking-widest pr-1">
           Status:
         </span>
