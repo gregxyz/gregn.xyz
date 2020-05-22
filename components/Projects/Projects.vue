@@ -30,6 +30,7 @@
 <script>
   import ProjectItem from '~/components/Projects/ProjectItem';
   import ProjectModal from '~/components/Projects/ProjectModal';
+  import screenSize from '~/mixins/screenSize';
 
   export default {
     components: {
@@ -55,6 +56,34 @@
         this.openProject = false;
         this.activeProject = {};
         document.body.style.overflow = '';
+      },
+      observerText() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const timeline = this.$gsap.timeline();
+            timeline.set(entry.target, {
+              opacity: 0,
+              x: '-3vw',
+            });
+            if (entry.isIntersecting) {
+              timeline.to(entry.target, {
+                opacity: 1,
+                x: 0,
+                ease: 'power3.out',
+                duration: 1,
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          root: null,
+          rootMargin: `${ this.screenMd ? '-15%' : '-10%' } 0px`,
+          threshold: 0,
+        });
+
+        document.querySelectorAll('.animate-text-left').forEach((el) => {
+          observer.observe(el);
+        });
       },
       observerProjectImages() {
         const observer = new IntersectionObserver((entries) => {
@@ -82,7 +111,9 @@
     },
     mounted() {
       this.observerProjectImages();
+      this.observerText();
     },
+    mixins: [screenSize],
   };
 </script>
 
