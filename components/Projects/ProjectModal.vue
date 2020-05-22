@@ -10,7 +10,7 @@
       close
     </button>
 
-    <div class="project-modal-content pt-20 p-6 lg:pl-20 lg:pt-20 lg:pr-0 lg:w-1/2">
+    <div class="project-modal-content opacity-0 pt-20 p-6 lg:pl-20 lg:pt-20 lg:pr-0 lg:w-1/2">
       <h3 class="title-heading text-underline">
         {{ project.title }}.
       </h3>
@@ -59,7 +59,7 @@
       <img
         :src="project.image"
         alt=""
-        class="project-modal-image w-full h-screen object-cover"
+        class="project-modal-image w-full h-screen object-cover opacity-0"
       >
     </div>
   </section>
