@@ -172,7 +172,7 @@
 
 <style lang="scss" scoped>
   .project-modal {
-    @apply fixed top-0 left-0 z-100 w-screen h-screen flex flex-col overflow-scroll;
+    @apply fixed top-0 left-0 z-100 w-screen h-screen flex flex-col;
 
     @screen lg {
       @apply flex-row items-center overflow-hidden;
@@ -189,6 +189,24 @@
 
     &-3 {
       @apply top-auto bottom-0;
+    }
+  }
+
+  .project-modal-content {
+    @apply overflow-scroll;
+    margin-bottom: 10vh;
+
+    @screen lg {
+      @apply overflow-hidden mb-0;
+    }
+  }
+
+  .close-modal {
+    @apply bg-white;
+    box-shadow: -7px -7px 13px 17px #ffffff;
+
+    @screen lg {
+      @apply bg-transparent shadow-none;
     }
   }
 </style>
