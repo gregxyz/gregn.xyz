@@ -1,170 +1,233 @@
 <template>
   <section class="hero">
-    <div class="flex items-center px-20">
-      <div class="w-3/5 flex-shrink-0 relative z-20">
-        <h1 class="hero-title text-5xl font-heading font-bold text-primary mb-2">
-          <div>G</div><div>r</div><div>e</div><div>g</div> <div>N</div><div>i</div><div>c</div><div>h</div><div>o</div><div>l</div><div>s</div><div>o</div><div>n</div>
-        </h1>
-        <p class="hero-tagline">
-          A <span class="text-underline">Front End Developer</span> based in Manchester. I'm passionate about <span class="text-underline">REST API's</span>, <span class="text-underline">Graph QL</span>, <span class="text-underline">Headless CMS'</span> & the latest in <span class="text-underline">Javascript</span> while maintaining a strong emphasis on performance, SEO and accessibility.
-        </p>
-      </div>
-      <div class="view-projects">
-        <div class="circle circle-1 bg-pink" />
-        <div class="circle circle-2 bg-cream z-10" />
-        <div class="circle circle-3 bg-sky z-20" />
-        <button class="view-projects-btn z-30">
-          view proje-cts
-        </button>
+    <ul
+      v-if="blok.socialLinks"
+      class="socials absolute top-0 left-0 flex opacity-0 pt-6 pl-6 lg:pl-20 lg:pt-10"
+    >
+      <li
+        v-for="social in blok.socialLinks"
+        :key="social._uid"
+        class="mr-5 text-lilac font-leon transition-colors ease-in-out duration-300 hover:text-primary"
+      >
+        <a
+          :href="social.link.url"
+          target="_blank"
+        >
+          {{ social.name }}
+        </a>
+      </li>
+    </ul>
+    <div class="flex flex-col items-center px-6 lg:flex-row lg:px-20">
+      <div class="flex-shrink-0 relative z-20 lg:w-3/5">
+        <h1
+          v-html="blok.title"
+          class="hero-title text-3xl font-heading font-bold text-primary mb-2 lg:text-3.5vw"
+        />
+        <p
+          v-html="blok.description"
+          class="hero-tagline"
+        />
       </div>
     </div>
+    <button
+      @mouseenter="viewProjectsEnter"
+      @mouseleave="viewProjectsLeave"
+      @click="goToProjects"
+      class="view-projects-btn"
+    >
+      <div>v</div><div>i</div><div>e</div><div>w</div> <div>p</div><div>r</div><div>o</div><div>j</div><div>e</div><div>c</div><div>t</div><div>s</div>
+    </button>
+    <div class="reveal reveal-1 bg-sky" />
+    <div class="reveal reveal-2 bg-cream" />
+    <div class="reveal reveal-3 bg-pink" />
   </section>
 </template>
 
 <script>
-  import { gsap, TextPlugin } from 'gsap/all';
-
-  gsap.registerPlugin(TextPlugin);
+  import screenSize from '~/mixins/screenSize';
 
   export default {
-    data: () => ({
-      skills: [
-        'Vue JS',
-        'Nuxt',
-        'Vuex',
-        'Javascript',
-        'Graph QL',
-        'Storyblok',
-        'WordPress',
-        'Developer',
-      ],
-      skillsIndex: 0,
-    }),
+    props: {
+      blok: {
+        type: Object,
+        required: true,
+      },
+    },
     methods: {
       heroTimeline() {
-        const timeline = gsap.timeline();
-        timeline.to(document.querySelectorAll('.hero-title div'), {
+        const timeline = this.$gsap.timeline();
+        timeline.to('.reveal-1', {
+          width: '100%',
+          duration: 0.8,
+          ease: 'cubicEaseSlowMiddle',
+        });
+        timeline.to('.reveal-2', {
+          width: '100%',
+          duration: 0.8,
+          ease: 'cubicEaseSlowMiddle',
+        }, '-=0.4');
+        timeline.to('.reveal-3', {
+          width: '100%',
+          duration: 0.8,
+          ease: 'cubicEaseSlowMiddle',
+        }, '-=0.4');
+        timeline.set(document.querySelectorAll('.reveal'), {
+          left: 'auto',
+        });
+        timeline.to('.reveal-1', {
+          width: this.screenLg ? '50vw' : '21vw',
+          duration: 0.8,
+          ease: 'cubicEaseSlowMiddle',
+        });
+        timeline.to('.reveal-2', {
+          width: this.screenLg ? '35vw' : '16vw',
+          duration: 0.8,
+          ease: 'cubicEaseSlowMiddle',
+        }, '-=0.4');
+        timeline.to('.reveal-3', {
+          width: '10vw',
+          duration: 0.8,
+          ease: 'cubicEaseSlowMiddle',
+        }, '-=0.4');
+        timeline.to('.hero-title div', {
           y: 0,
           opacity: 1,
-          delay: 1,
-          duration: 1.2,
-        });
+          duration: 0.6,
+          stagger: {
+            each: 0.3,
+            ease: 'cubicEaseSlowMiddle',
+            axis: 'y',
+          },
+        }, '-=1');
+        timeline.to('.socials', {
+          opacity: 1,
+          duration: 0.6,
+        }, '-=0.6');
         timeline.to('.hero-tagline', {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-        }, '-=0.3');
-        timeline.to('.view-projects-btn', {
+          duration: 0.6,
+        }, '-=0.6');
+        timeline.to('.view-projects-btn div', {
           x: 0,
-          ease: 'power3.out',
-          duration: 1,
-        });
-        timeline.to('.view-projects-btn', {
           opacity: 1,
-          ease: 'power3.in',
-          duration: 2,
-        }, '-=1.5');
-        timeline.to('.view-projects-btn', {
-          lineHeight: '21vh',
-          ease: 'power3.out',
-          duration: 2,
+          duration: 0.8,
+          stagger: {
+            ease: 'power3.in',
+            axis: 'x',
+          },
         }, '-=0.5');
+        timeline.set('.view-projects-btn', {
+          zIndex: 60,
+          pointerEvents: 'auto',
+        });
+      },
+      viewProjectsEnter() {
+        const timeline = this.$gsap.timeline();
+        timeline.set('.reveal-3', {
+          width: '10vw',
+        });
+        timeline.to('.reveal-3', {
+          width: '26vw',
+          duration: 0.4,
+          ease: 'cubicEaseSlowMiddle',
+        });
+      },
+      viewProjectsLeave() {
+        const timeline = this.$gsap.timeline();
+        timeline.to('.reveal-3', {
+          width: '10vw',
+          height: '33.33%',
+          duration: 0.4,
+          ease: 'cubicEaseSlowMiddle',
+        });
+      },
+      goToProjects() {
+        this.$gsap.to(window, {
+          duration: 1,
+          scrollTo: '.projects',
+          ease: 'power3.out',
+        });
       },
     },
     mounted() {
-      window.addEventListener('load', () => {
-        this.heroTimeline();
-      });
+      this.heroTimeline();
     },
+    mixins: [screenSize],
   };
 </script>
 
 <style lang="scss" scoped>
   .hero {
-    @apply relative z-1 bg-white flex items-center w-full h-screen overflow-hidden;
-
-    &:before {
-      content: '';
-      width: 40vw;
-      height: 40vw;
-      position: absolute;
-      background-color: #d9f3ee;
-      left: -20vw;
-      bottom: -27vh;
-      @apply absolute rounded-full z-20;
-    }
+    @apply relative z-1 bg-white flex items-center w-full min-h-screen overflow-hidden;
+    min-height: -webkit-fill-available;
   }
 
   .hero-title {
     @apply inline-block;
 
-    div {
+    /deep/ div {
       @apply inline-block opacity-0;
 
       @for $i from 1 through 13 {
         &:nth-child(#{$i}) {
-          transform: translateY(#{$i * 3}px);
+          transform: translateY(#{$i * 0.8}vh);
         }
       }
     }
   }
 
   .hero-tagline {
-    @apply text-lilac text-xl w-10/12 leading-relaxed opacity-0 transform translate-y-8;
+    @apply text-lilac text-base w-10/12 leading-relaxed opacity-0 transform translate-y-8;
     letter-spacing: 1px;
-  }
 
-  .text-underline {
-    @apply relative inline-block z-1;
-
-    &:before {
-      content: '';
-      width: 100%;
-      height: 0.2em;
-      bottom: 7px;
-      opacity: 0.4;
-      z-index: -1;
-      @apply absolute bg-secondary -z-1;
-    }
-  }
-
-  .view-projects {
-    @apply ml-auto;
-  }
-
-  .view-projects-btn {
-    @apply relative font-body text-primary tracking-widest text-left;
-    font-size: 8vw;
-    line-height: 12vh;
-    max-width: 25vw;
-    transform: translateX(5vw);
-    opacity: 0;
-
-    &:focus {
-      @apply outline-none;
-    }
-  }
-
-  .circle {
-    @apply absolute top-0 rounded-full;
-    width: 33vw;
-    height: 33vw;
-    right: 5vw;
-
-    &-1 {
-      top: -15vh;
+    @screen lg {
+      @apply text-1.5vw;
     }
 
-    &-2 {
-      top: 50%;
-      right: -10vw;
-      transform: translateY(-50%);
-    }
+    /deep/ .text-underline:before {
+      bottom: 6px;
 
-    &-3 {
-      top: auto;
-      bottom: -15vh;
+      @screen xl {
+        bottom: 0.5vw;
+      }
     }
   }
   
+  .reveal {
+    @apply absolute top-0 right-0 left-0 w-0 z-50;
+    height: 33.33%;
+
+    &-2 {
+      top: 33.33%;
+    }
+
+    &-3 {
+      @apply top-auto bottom-0;
+    }
+  }
+
+  .view-projects-btn {
+    @apply absolute right-0 text-primary font-leon tracking-widest pointer-events-none text-2xl;
+    bottom: 10vh;
+    transform: translateX(-15vw);
+
+    @screen lg {
+      @apply text-4vw;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    div {
+      @apply inline-block opacity-0;
+
+      @for $i from 1 through 12 {
+        &:nth-child(#{$i}) {
+          transform: translateX(#{$i * 2}vw);
+        }
+      }
+    }
+  }
 </style>

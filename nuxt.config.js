@@ -1,3 +1,4 @@
+require('dotenv-flow').config();
 
 export default {
   mode: 'spa',
@@ -5,11 +6,12 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Portfolio | Greg Nicholson',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'description', name: 'description', content: 'A Front End Developer based in Manchester.' },
+      { hid: 'robots', name: 'robots', content: 'noindex,nofollow' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -25,12 +27,15 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/scss/_fonts.scss',
+    '~/assets/scss/_type.scss',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/gsap.js', ssr: false },
+    '~/plugins/gsap.client.js',
+    '~/plugins/components.js',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -50,6 +55,8 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/apollo',
+    'storyblok-nuxt',
   ],
   /*
   ** Axios module configuration
@@ -66,6 +73,21 @@ export default {
     */
     extend(config, ctx) {
     },
-    transpile: ['gsap'],
+  },
+  tailwindcss: {
+    exposeConfig: true,
+  },
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://gapi.storyblok.com/v1/api',
+        httpLinkOptions: {
+          headers: {
+            token: process.env.STORYBLOK_TOKEN,
+            version: process.env.STORYBLOK_VERSION,
+          },
+        },
+      },
+    },
   },
 };

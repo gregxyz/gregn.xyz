@@ -1,8 +1,19 @@
 <template>
   <div>
     <nuxt />
+    <AppFooter />
   </div>
 </template>
+
+<script>
+  import AppFooter from '~/components/AppFooter/AppFooter';
+
+  export default {
+    components: {
+      AppFooter,
+    },
+  };
+</script>
 
 <style>
 html {
